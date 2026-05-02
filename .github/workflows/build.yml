@@ -13,14 +13,14 @@ jobs:
     - uses: actions/checkout@v4
     
     - name: Setup Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: '3.9'
     
     - name: Install Buildozer
       run: |
         sudo apt-get update
-        sudo apt-get install -y git zip unzip openjdk-11-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncurses5 libtinfo5 cmake libffi-dev libssl-dev
+        sudo apt-get install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncurses5 libtinfo5 cmake libffi-dev libssl-dev
         pip install buildozer cython
     
     - name: Build APK
@@ -29,7 +29,7 @@ jobs:
         buildozer android debug deploy run
     
     - name: Upload APK
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: audio-app
         path: bin/*.apk
